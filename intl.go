@@ -12,14 +12,14 @@ type Intl struct {
 }
 
 type LangSource struct {
-	Lang string
-	File string
+	Lang     string
+	Filepath string
 }
 
 func New(sources ...LangSource) (*Intl, error) {
 	languages := make(map[string]map[string]string)
 	for _, src := range sources {
-		language, err := loadLanguage(src.File)
+		language, err := loadLanguage(src.Filepath)
 		if err != nil {
 			return nil, errors.Wrapf(err, "could not load language (%s)", src.Lang)
 		}
